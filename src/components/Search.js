@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { search } from "../BooksAPI";
+import { getAll, search } from "../BooksAPI";
 import { Link } from "react-router-dom";
 import BookItem from "./BookItem";
 const Search = ({ onChangeShelf }) => {
@@ -14,8 +14,20 @@ const Search = ({ onChangeShelf }) => {
 
   useEffect(() => {
     const searchApi = async () => {
-      const data = await search(searchInput, 1);
-      console.log(data);
+      let data = await search(searchInput, 1);
+      // you are going through in right way.
+      const mybooks = await getAll();
+
+      if (data && data.length > 0) {
+        data.forEach((book1) => {
+          mybooks.forEach((book2) => {
+            if (book1.id === book2.id) {
+              book1.shelf = book2.shelf;
+            }
+          });
+        });
+      }
+
       if (data === undefined || data.error) {
         setBooks([]);
       } else {

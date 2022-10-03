@@ -30,16 +30,8 @@ const BookList = ({ shelfChanger, onChangeShelf }) => {
         }
       });
     }
-    console.log("fetchBooks...");
-    // console.log("current", currentBooks);
-    // console.log("wantBooks", wantBooks);
-    // console.log("readBooks", readBooks);
   };
   fetchBooks();
-
-  // const onChangeShelfHandler = (obj) => {
-  //   setShelfChanger(obj);
-  // };
 
   useEffect(() => {
     // effect;

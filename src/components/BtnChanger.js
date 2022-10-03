@@ -2,18 +2,15 @@ import React from "react";
 
 const BtnChanger = ({ book, onChangeShelf }) => {
   const changeHandler = (e) => {
-    console.log(e.target.value);
     onChangeShelf({ book: { id: book.id }, shelf: e.target.value });
   };
 
+  const shelf = book.shelf ? book.shelf : "none";
+
   return (
     <div className="book-shelf-changer">
-      <select
-        id="shelfValue"
-        onChange={changeHandler}
-        value={book.shelf ? book.shelf : "none"}
-      >
-        <option value="none" disabled>
+      <select id="shelfValue" onChange={changeHandler} value={shelf}>
+        <option value="" disabled>
           Move to...
         </option>
         <option value="currentlyReading">Currently Reading</option>
